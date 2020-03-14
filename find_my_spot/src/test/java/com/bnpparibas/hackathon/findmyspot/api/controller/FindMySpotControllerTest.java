@@ -51,5 +51,11 @@ public class FindMySpotControllerTest {
 
     @Test
     public void markUnocucupied() throws Exception {
+        findMySpotController.markUnocucupied("B1",1L);
+    }
+
+    @Test(expected = Exception.class)
+    public void failToMarkUnocucupied() throws Exception {
+        findMySpotController.markUnocucupied("oahgskgfdhas",-1L);
     }
 }
