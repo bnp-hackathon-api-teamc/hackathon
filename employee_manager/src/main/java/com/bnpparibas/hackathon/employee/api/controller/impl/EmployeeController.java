@@ -84,8 +84,8 @@ public class EmployeeController implements EmployeeControllerAPI {
 
 	@Override
 	@RequestMapping("/employees/status")
-	public Timestamp getTime(){
+	public ResponseEntity<Timestamp> getTime(){
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		return timestamp;
+		return ResponseEntity.ok(timestamp);
 	}
 }

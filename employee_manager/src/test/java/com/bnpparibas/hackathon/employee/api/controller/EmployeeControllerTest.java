@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -156,6 +157,17 @@ public class EmployeeControllerTest {
 
 		Employee employee1 = new Employee(1, "person1", "hello", "employee1email@gmail.com");
 
+	}
+
+
+	@Test
+	public void testGetTimeStamp() {
+
+		ResponseEntity<Timestamp> responseEntity = employeeController.getTime();
+
+		assertThat(responseEntity).isNotNull();
+		assertThat(responseEntity.getBody()).isNotNull();
+		assertThat(responseEntity.getBody().getTime()).isLessThan(new Timestamp(System.currentTimeMillis()).getTime());
 	}
 
 	
