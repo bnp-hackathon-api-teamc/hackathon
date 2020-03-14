@@ -4,6 +4,7 @@ import com.bnpparibas.hackathon.commons.api.exception.ResourceNotFoundException;
 import com.bnpparibas.hackathon.parking.api.model.Parking;
 import com.bnpparibas.hackathon.parking.api.model.ParkingLot;
 import com.bnpparibas.hackathon.parking.api.repository.ParkingLotRepository;
+import com.bnpparibas.hackathon.parking.api.repository.ParkingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ import java.util.List;
 public class ParkingController implements ParkingControllerAPI{
 
     @Autowired
-    private ParkingLotRepository parkingLotRepository;
+    private ParkingRepository parkingRepository;
 
     @Override
     public ResponseEntity<ParkingLot> updateParkingLot(Long parkingLotId, @Valid ParkingLot parkingLotDetails) throws ResourceNotFoundException {
@@ -53,7 +54,7 @@ public class ParkingController implements ParkingControllerAPI{
 
     @Override
     public List<Parking> getAllParkings() {
-        return null;
+        return parkingRepository.findAll();
     }
 
     @Override
