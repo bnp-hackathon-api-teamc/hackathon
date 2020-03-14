@@ -1,6 +1,7 @@
 package com.bnpparibas.hackathon.parking.api.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -59,6 +60,13 @@ public class Parking {
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 	public List<ParkingLot> getParkingLot() {
 		return parkingLot;
+	}
+
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	public List<ParkingLot> getAvailableParkingLot() {
+		return parkingLot.stream()
+				.filter(parkingLot1 -> parkingLot1.isAvailable())
+				.collect(Collectors.toList());
 	}
 
 	public void setParkingLot(List<ParkingLot> parkingLot) {

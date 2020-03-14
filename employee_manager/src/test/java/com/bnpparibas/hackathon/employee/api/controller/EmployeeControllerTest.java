@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -155,23 +156,18 @@ public class EmployeeControllerTest {
 		//TODO hackathon unit test development
 
 		Employee employee1 = new Employee(1, "person1", "hello", "employee1email@gmail.com");
-		Employee employee2 = new Employee(2, "person2", "hello", "employee2email@gmail.com");
 
-		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(new MockHttpServletRequest()));
-
-		try {
-			// when...
-			employeeController.getEmployeeById(null);
-		} catch (ResourceNotFoundException e) {
-			//then we should have a controlled exception...
-			assertThat(e.getMessage()).contains("Employee not found");
-			return;
-		}
-
-		//else if we reach this point the method is not thrown the expected exception
-		fail("Failed to throw ResourceNotFoundException when searching for inexistent user.");
+	}
 
 
+	@Test
+	public void testGetTimeStamp() {
+
+		ResponseEntity<Timestamp> responseEntity = employeeController.getTime();
+
+		assertThat(responseEntity).isNotNull();
+		assertThat(responseEntity.getBody()).isNotNull();
+		assertThat(responseEntity.getBody().getTime()).isLessThan(new Timestamp(System.currentTimeMillis()).getTime());
 	}
 
 	
