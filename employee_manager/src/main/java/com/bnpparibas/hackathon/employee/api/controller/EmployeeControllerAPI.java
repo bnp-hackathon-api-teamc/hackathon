@@ -1,5 +1,6 @@
 package com.bnpparibas.hackathon.employee.api.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ public interface EmployeeControllerAPI {
 	public ResponseEntity<Employee> getEmployeeById(Long employeeId) throws ResourceNotFoundException;
 
 	public List<Employee> getAllEmployees();
-	
+
+	public Timestamp getTime();
 
 }

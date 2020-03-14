@@ -1,5 +1,6 @@
 package com.bnpparibas.hackathon.employee.api.controller.impl;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 
 import java.util.List;
@@ -79,5 +80,12 @@ public class EmployeeController implements EmployeeControllerAPI {
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return response;
+	}
+
+	@Override
+	@RequestMapping("/employees/status")
+	public Timestamp getTime(){
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		return timestamp;
 	}
 }
