@@ -38,8 +38,40 @@ public class ParkingControllerTest {
     private ParkingLotRepository parkingLotRepository;
 
 
+    protected Parking parkingB1;
+    protected Parking parkingB2;
+
+    protected List<ParkingLot> parkingLotsB1;
+    protected List<ParkingLot> parkingLotsB2;
+
     @Before
     public void setUp() throws Exception {
+
+        byte[] array = new byte[7];
+        new Random().nextBytes(array);
+
+        parkingB1= new Parking("B1", "Alter-Solutions",  null);
+
+        parkingB2 = new Parking("B2", "Alter-Solutions",  null);
+
+        parkingLotsB2 = new ArrayList<>();
+        parkingLotsB2 = new ArrayList<>();
+
+        for (int floor = 0; floor < 5; floor++) {
+            for (int width = 0; width < 5; width++) {
+                for (int height = 0; height < 5; height++) {
+
+                    String generatedString = new String(array, Charset.forName("UTF-8"));
+                    parkingLotsB1.add(new ParkingLot(generatedString, floor, width, height, parkingB1));
+                    parkingLotsB2.add(new ParkingLot(generatedString, floor, width, height, parkingB1));
+
+                }
+            }
+        }
+
+        parkingB1.setParkingLot(parkingLotsB1);
+        parkingB2.setParkingLot(parkingLotsB2);
+
     }
 
     @Test
@@ -87,31 +119,6 @@ public class ParkingControllerTest {
     @Test
     public void getAllParkings() throws Exception {
 
-        byte[] array = new byte[7];
-        new Random().nextBytes(array);
-
-        Parking parkingB1 = new Parking("B1", "Alter-Solutions",  null);
-
-        Parking parkingB2 = new Parking("B2", "Alter-Solutions",  null);
-
-        List<ParkingLot> parkingLotsB1 = new ArrayList<>();
-        List<ParkingLot> parkingLotsB2 = new ArrayList<>();
-
-        for (int floor = 0; floor < 5; floor++) {
-            for (int width = 0; width < 5; width++) {
-                for (int height = 0; height < 5; height++) {
-
-                    String generatedString = new String(array, Charset.forName("UTF-8"));
-                    parkingLotsB1.add(new ParkingLot(generatedString, floor, width, height, parkingB1));
-                    parkingLotsB2.add(new ParkingLot(generatedString, floor, width, height, parkingB1));
-
-                }
-            }
-        }
-
-        parkingB1.setParkingLot(parkingLotsB1);
-        parkingB2.setParkingLot(parkingLotsB2);
-
         when(parkingRepository.findAll()).thenReturn(Arrays.asList(parkingB1,parkingB2));
 
         List<Parking> responseEntity= parkingController.getAllParkings();
@@ -145,7 +152,9 @@ public class ParkingControllerTest {
     @Test
     public void getParkingLotAvailableByBuilding() throws Exception {
 
-        List<ParkingLot> responseEntity = parkingController.getParkingLotAvailableByBuilding("aliasId");
+        when(parkingRepository.findAll()).thenReturn(Arrays.asList(parkingB1,parkingB2));
+
+        List<ParkingLot> responseEntity = parkingController.getParkingLotAvailableByBuilding("B1");
 
         assertThat(responseEntity).isNotNull();
     }
