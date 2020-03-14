@@ -76,11 +76,6 @@ public class ParkingController implements ParkingControllerAPI{
     }
 
     @Override
-    public List<ParkingLot> getParkingLotAvailableByBuilding(String building) throws ResourceNotFoundException {
-        return null;
-    }
-
-    @Override
     public List<ParkingLot> getAllParkingLots() {
         return null;
     }
@@ -90,8 +85,10 @@ public class ParkingController implements ParkingControllerAPI{
         return null;
     }
 
-    @Autowired
-	private ParkingRepository parkingRepository;
+    @Override
+    public List<ParkingLot> getAvailableParkingLot() {
+        return null;
+    }
 
     @Override
     @RequestMapping(value = "/availableParkingLots")
