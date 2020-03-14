@@ -30,7 +30,7 @@ public class ParkingLot {
 		this.width = width;
 		this.height = height;
 		this.parking = parking;
-		this.isAvailable = true;
+		this.isAvailable = isAvailable;
 	}
 
 	@Id
