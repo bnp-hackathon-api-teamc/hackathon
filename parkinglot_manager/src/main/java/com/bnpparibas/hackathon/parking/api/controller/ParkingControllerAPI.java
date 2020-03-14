@@ -35,6 +35,6 @@ public interface ParkingControllerAPI {
 	public List<ParkingLot> getAllParkingLots();
 	
 	public List<ParkingLot> getAllAvailableParkingLots();
-	
 
+	public List<ParkingLot> getAvailableParkingLot();
 }

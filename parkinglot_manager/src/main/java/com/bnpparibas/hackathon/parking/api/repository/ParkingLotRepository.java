@@ -8,4 +8,5 @@ import com.bnpparibas.hackathon.parking.api.model.ParkingLot;
 @Repository
 public interface ParkingLotRepository extends JpaRepository<ParkingLot, Long> {
 
+
 }
