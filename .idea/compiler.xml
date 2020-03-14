@@ -17,7 +17,7 @@
       <module name="commons" target="1.8" />
       <module name="employee-manager" target="1.8" />
       <module name="entities" target="1.8" />
-      <module name="find-my-spot" target="1.8" />
+      <module name="find-my-spot" target="1.5" />
       <module name="global" target="1.8" />
       <module name="parkinglot-manager" target="1.8" />
     </bytecodeTargetLevel>

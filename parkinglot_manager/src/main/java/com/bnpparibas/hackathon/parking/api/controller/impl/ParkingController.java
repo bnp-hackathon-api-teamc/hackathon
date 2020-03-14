@@ -1,11 +1,11 @@
 package com.bnpparibas.hackathon.parking.api.controller.impl;
 
-import com.bnpparibas.hackathon.commons.api.exception.ResourceNotFoundException;
 import com.bnpparibas.hackathon.parking.api.controller.ParkingControllerAPI;
 import com.bnpparibas.hackathon.parking.api.model.Parking;
 import com.bnpparibas.hackathon.parking.api.model.ParkingLot;
 import com.bnpparibas.hackathon.parking.api.repository.ParkingLotRepository;
 import com.bnpparibas.hackathon.parking.api.service.ParkingService;
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;

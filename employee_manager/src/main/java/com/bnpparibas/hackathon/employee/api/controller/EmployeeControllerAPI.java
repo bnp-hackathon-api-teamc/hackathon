@@ -6,14 +6,14 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 
-import com.bnpparibas.hackathon.commons.api.exception.ResourceNotFoundException;
 import com.bnpparibas.hackathon.employee.api.model.Employee;
 
 public interface EmployeeControllerAPI {
 
-	public Map<String, Boolean> deleteEmployee(Long employeeId) throws com.bnpparibas.hackathon.commons.api.exception.ResourceNotFoundException;
+	public Map<String, Boolean> deleteEmployee(Long employeeId) throws ResourceNotFoundException;
 
 	public ResponseEntity<Employee> updateEmployee(Long employeeId, @Valid Employee employeeDetails) throws ResourceNotFoundException;
 

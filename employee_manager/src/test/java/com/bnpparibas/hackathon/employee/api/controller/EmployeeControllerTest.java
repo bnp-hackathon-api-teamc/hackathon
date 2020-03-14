@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,7 +23,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.bnpparibas.hackathon.commons.api.exception.ResourceNotFoundException;
 import com.bnpparibas.hackathon.employee.api.controller.impl.EmployeeController;
 import com.bnpparibas.hackathon.employee.api.model.Employee;
 import com.bnpparibas.hackathon.employee.api.repository.EmployeeRepository;
@@ -175,13 +175,16 @@ public class EmployeeControllerTest {
 
 //	@org.junit.Test(expected = ResourceNotFoundException.class)
 	@Test
-	public void failTestDeleteEmployee() throws Exception{
+	public void testDeleteEmployee() throws Exception{
 
 		String email = "theemployeeemail@gmail.com";
 		String firstName = "First";
 		String lastName = "and Last Name";
-		when(repository.findById(-1L)).thenReturn(Optional.of(null));
 
+		when(repository.findById(1L)).thenReturn(Optional.of(new Employee(firstName,lastName,email)));
+		when(repository.findById(-1L)).thenReturn(Optional.ofNullable(new Employee()));
+
+		employeeController.deleteEmployee(1L);
 		employeeController.deleteEmployee(-1L);
 	}
 	
