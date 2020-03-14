@@ -13,4 +13,19 @@ public class FindMySpotControllerImpl implements FindMySpotControllerAPI{
         return findMySpotService.assign(building, userId);
     }
 
+    @Override
+    public String getEmployeeParkingLot(long userId) {
+        return null;
+    }
+
+    @Override
+    public void markOcucupied(String building, long parkingLotID) {
+
+    }
+
+    @Override
+    public void markUnocucupied(String building, long parkingLotID) {
+
+    }
+
 }

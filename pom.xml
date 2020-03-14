@@ -36,7 +36,8 @@
 		<module>employee_manager</module>
 		<module>parkinglot_manager</module>
 		<module>find_my_spot</module>
-	</modules>
+        <module>entities</module>
+    </modules>
 
 	<dependencies>
 		<dependency>

@@ -10,11 +10,13 @@
         <module name="find-my-spot" />
         <module name="commons" />
         <module name="employee-manager" />
+        <module name="entities" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="commons" target="1.8" />
       <module name="employee-manager" target="1.8" />
+      <module name="entities" target="1.8" />
       <module name="find-my-spot" target="1.8" />
       <module name="global" target="1.8" />
       <module name="parkinglot-manager" target="1.8" />
@@ -24,6 +26,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="commons" options="-parameters" />
       <module name="employee-manager" options="-parameters" />
+      <module name="entities" options="-parameters" />
       <module name="find-my-spot" options="-parameters" />
       <module name="parkinglot-manager" options="-parameters" />
     </option>

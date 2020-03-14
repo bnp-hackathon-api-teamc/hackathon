@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/commons/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/employee_manager/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/entities/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/find_my_spot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/parkinglot_manager/src/main/java" charset="UTF-8" />
   </component>
