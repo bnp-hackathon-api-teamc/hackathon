@@ -25,7 +25,7 @@ import java.nio.charset.Charset;
 import java.util.*;
 
 
-@ExtendWith(SpringExtension.class)
+
 @RunWith(MockitoJUnitRunner.class)
 public class ParkingControllerTest {
 
@@ -103,7 +103,7 @@ public class ParkingControllerTest {
     }
 
     @Test(expected = ResourceNotFoundException.class)
-    public void FailUpdateParkingLot() throws Exception {
+    public void failUpdateParkingLot() throws Exception {
 
         ResponseEntity<ParkingLot> responseEntity = parkingController.updateParkingLot(-1L, new ParkingLot());
     }
@@ -138,7 +138,7 @@ public class ParkingControllerTest {
 
     @Test
     public void getParkingByBuilding() throws Exception {
-        ResponseEntity<ParkingLot> responseEntity = parkingController.updateParkingLot(1L, new ParkingLot());
+        ResponseEntity<Parking> responseEntity = parkingController.getParkingByBuilding("B1");
 
         assertThat(responseEntity).isNotNull();
     }
