@@ -1,5 +1,7 @@
 package com.bnpparibas.hackathon.findmyspot.api.controller;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
 public interface FindMySpotControllerAPI {
 
 	/*TODO Create API that answers to the following needs:
@@ -9,4 +11,11 @@ public interface FindMySpotControllerAPI {
 	 *  - When the user leaves the building it marks the parking lot as free 
 	 */
 
+	public String assign(@RequestBody String building, @RequestBody long userId);
+
+	public String getEmployeeParkingLot(@RequestBody long userId);
+
+	public void markOcucupied(String building, parkingLotID);
+
+	public void markUnocucupied(String building, parkingLotID);
 }
