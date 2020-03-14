@@ -4,13 +4,7 @@ import com.bnpparibas.hackathon.commons.api.exception.ResourceNotFoundException;
 import com.bnpparibas.hackathon.parking.api.controller.ParkingControllerAPI;
 import com.bnpparibas.hackathon.parking.api.model.Parking;
 import com.bnpparibas.hackathon.parking.api.model.ParkingLot;
-import com.bnpparibas.hackathon.parking.api.repository.ParkingRepository;
-import javassist.NotFoundException;
-import org.omg.CosNaming.NamingContextPackage.NotFound;
-import org.springframework.beans.factory.annotation.Autowired;
-import com.bnpparibas.hackathon.commons.api.exception.ResourceNotFoundException;
-import com.bnpparibas.hackathon.parking.api.model.Parking;
-import com.bnpparibas.hackathon.parking.api.model.ParkingLot;
+import com.bnpparibas.hackathon.parking.api.repository.ParkingLotRepository;
 import com.bnpparibas.hackathon.parking.api.service.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -99,6 +93,12 @@ public class ParkingController implements ParkingControllerAPI{
         return null;
     }
 
+    /**
+     * Get an available parking lot given a building name
+     * @param building
+     * @return
+     * @throws ResourceNotFoundException
+     */
     @Override
     @RequestMapping(value = "/availableParkingLots")
     public List<ParkingLot> getParkingLotAvailableByBuilding(String building) throws ResourceNotFoundException {

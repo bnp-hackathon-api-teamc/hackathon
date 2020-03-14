@@ -8,7 +8,7 @@ public interface FindMySpotControllerAPI {
 	 *  - Assigns a user to an available parking lot in a specific building
 	 *  - Informs to a user where is his assigned parking lot or if the user doesn't have any assigned park
 	 *  - When the user enters in the building it marks the parking lot as occupied
-	 *  - When the user leaves the building it marks the parking lot as free 
+	 *  - When the user leaves the building it marks the parking lot as free
 	 */
 
 	public String assign(@RequestBody String building, @RequestBody long userId);
