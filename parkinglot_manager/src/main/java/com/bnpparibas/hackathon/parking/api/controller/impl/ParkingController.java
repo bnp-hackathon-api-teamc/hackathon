@@ -29,6 +29,8 @@ public class ParkingController implements ParkingControllerAPI{
 
     @Autowired
     private ParkingRepository parkingRepository;
+    @Autowired
+    private ParkingLotRepository parkingLotRepository;
 
     @Override
     public ResponseEntity<ParkingLot> updateParkingLot(Long parkingLotId, @Valid ParkingLot parkingLotDetails) throws ResourceNotFoundException {
@@ -42,7 +44,8 @@ public class ParkingController implements ParkingControllerAPI{
 
     @Override
     public ParkingLot createParkingLot(@Valid ParkingLot parkingLot) {
-        return null;
+
+        return parkingLotRepository.save(parkingLot);
     }
 
     @Override
