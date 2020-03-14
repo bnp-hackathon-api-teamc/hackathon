@@ -7,6 +7,7 @@ import com.bnpparibas.hackathon.parking.api.repository.ParkingLotRepository;
 import com.bnpparibas.hackathon.parking.api.repository.ParkingRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -48,13 +49,14 @@ public class ParkingControllerTest {
     public void setUp() throws Exception {
 
         byte[] array = new byte[7];
-        new Random().nextBytes(array);
+        Random random = new Random();
+        random.nextBytes(array);
 
         parkingB1= new Parking("B1", "Alter-Solutions",  null);
 
         parkingB2 = new Parking("B2", "Alter-Solutions",  null);
 
-        parkingLotsB2 = new ArrayList<>();
+        parkingLotsB1 = new ArrayList<>();
         parkingLotsB2 = new ArrayList<>();
 
         for (int floor = 0; floor < 5; floor++) {
@@ -62,8 +64,8 @@ public class ParkingControllerTest {
                 for (int height = 0; height < 5; height++) {
 
                     String generatedString = new String(array, Charset.forName("UTF-8"));
-                    parkingLotsB1.add(new ParkingLot(generatedString, floor, width, height, parkingB1));
-                    parkingLotsB2.add(new ParkingLot(generatedString, floor, width, height, parkingB1));
+                    parkingLotsB1.add(new ParkingLot(generatedString, floor, width, height, parkingB1,false));
+                    parkingLotsB2.add(new ParkingLot(generatedString, floor, width, height, parkingB1,true));
 
                 }
             }
