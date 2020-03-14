@@ -52,22 +52,32 @@ public class ParkingControllerTest {
         Random random = new Random();
         random.nextBytes(array);
 
-        parkingB1= new Parking("B1", "Alter-Solutions",  null);
+        parkingB1 = new Parking("B1", "Alter-Solutions", null);
 
-        parkingB2 = new Parking("B2", "Alter-Solutions",  null);
+        parkingB2 = new Parking("B2", "Alter-Solutions", null);
 
         parkingLotsB1 = new ArrayList<>();
         parkingLotsB2 = new ArrayList<>();
 
-        for (int floor = 0; floor < 5; floor++) {
+        boolean switchBool = true;
+
+        int id = 0;
+
+        for (int floor = 0; floor < 2; floor++) {
             for (int width = 0; width < 5; width++) {
                 for (int height = 0; height < 5; height++) {
+                    ParkingLot parkingLot = new ParkingLot(String.format("%s %d %d %d", parkingB1.getName(), floor, width, height)
+                            , floor, width, height, parkingB1, switchBool);
+                    ParkingLot parkingLot2 = new ParkingLot(String.format("%s %d %d %d", parkingB2.getName(), floor, width, height)
+                            , floor, width, height, parkingB2, switchBool);
 
-                    String generatedString = new String(array, Charset.forName("UTF-8"));
-                    parkingLotsB1.add(new ParkingLot(generatedString, floor, width, height, parkingB1,false));
-                    parkingLotsB2.add(new ParkingLot(generatedString, floor, width, height, parkingB1,true));
+                    parkingLot.setId(id++);
+                    parkingLot2.setId(id++);
+                    parkingLotsB1.add(parkingLot);
+                    parkingLotsB2.add(parkingLot2);
 
                 }
+                switchBool = !switchBool;
             }
         }
 
@@ -121,9 +131,9 @@ public class ParkingControllerTest {
     @Test
     public void getAllParkings() throws Exception {
 
-        when(parkingRepository.findAll()).thenReturn(Arrays.asList(parkingB1,parkingB2));
+        when(parkingRepository.findAll()).thenReturn(Arrays.asList(parkingB1, parkingB2));
 
-        List<Parking> responseEntity= parkingController.getAllParkings();
+        List<Parking> responseEntity = parkingController.getAllParkings();
 
         assertThat(responseEntity).isNotNull();
         assertThat(responseEntity.size()).isEqualTo(2);
@@ -154,11 +164,14 @@ public class ParkingControllerTest {
     @Test
     public void getParkingLotAvailableByBuilding() throws Exception {
 
-        when(parkingRepository.findAll()).thenReturn(Arrays.asList(parkingB1,parkingB2));
+        when(parkingRepository.findAll()).thenReturn(Arrays.asList(parkingB1, parkingB2));
 
         List<ParkingLot> responseEntity = parkingController.getParkingLotAvailableByBuilding("B1");
 
         assertThat(responseEntity).isNotNull();
+        assertThat(responseEntity.size()).isEqualTo(25);
+        System.out.println("ParkingLot available on building B1 is "+ responseEntity.size());
+
     }
 
     @Test
