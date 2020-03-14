@@ -23,6 +23,6 @@ public interface EmployeeControllerAPI {
 
 	public List<Employee> getAllEmployees();
 
-	public Timestamp getTime();
+	public ResponseEntity<Timestamp> getTime();
 
 }
