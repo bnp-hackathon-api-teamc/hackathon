@@ -109,7 +109,7 @@ public class ParkingControllerTest {
 
     @Test
     public void createParking() throws Exception {
-        Parking responseEntity = parkingController.createParking(new Parking());
+        Parking responseEntity = parkingController.createParking(parkingB1);
 
         assertThat(responseEntity).isNotNull();
     }

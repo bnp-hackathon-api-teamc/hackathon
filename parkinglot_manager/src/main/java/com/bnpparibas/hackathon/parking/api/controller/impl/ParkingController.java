@@ -91,13 +91,13 @@ public class ParkingController implements ParkingControllerAPI{
     }
 
     @Override
-    @RequestMapping(value = "/availableParkingLots")
+    @RequestMapping(value = "/parking/available")
     public List<ParkingLot> getParkingLotAvailableByBuilding(String building) throws ResourceNotFoundException {
-        List<Parking> parkings = parkingRepository.findAll();
+        List<Parking> parings = parkingRepository.findAll();
 
         List<ParkingLot> parkingLots = new ArrayList<>();
 
-        for(Parking p : parkings){
+        for(Parking p : parings){
             if(p.getBuilding().equals(building)){
                  parkingLots = p.getAvailableParkingLot();
             }
