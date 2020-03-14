@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/commons/commons.iml" filepath="$PROJECT_DIR$/commons/commons.iml" />
       <module fileurl="file://$PROJECT_DIR$/employee_manager/employee-manager.iml" filepath="$PROJECT_DIR$/employee_manager/employee-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/entities/entities.iml" filepath="$PROJECT_DIR$/entities/entities.iml" />
       <module fileurl="file://$PROJECT_DIR$/find_my_spot/find-my-spot.iml" filepath="$PROJECT_DIR$/find_my_spot/find-my-spot.iml" />
       <module fileurl="file://$PROJECT_DIR$/global.iml" filepath="$PROJECT_DIR$/global.iml" />
       <module fileurl="file://$PROJECT_DIR$/parkinglot_manager/parkinglot-manager.iml" filepath="$PROJECT_DIR$/parkinglot_manager/parkinglot-manager.iml" />
