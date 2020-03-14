@@ -172,9 +172,17 @@ public class EmployeeControllerTest {
 
 	
 	
+
+//	@org.junit.Test(expected = ResourceNotFoundException.class)
 	@Test
-	public void testDeleteEmployee() {
-		//TODO hackathon unit test development
+	public void failTestDeleteEmployee() throws Exception{
+
+		String email = "theemployeeemail@gmail.com";
+		String firstName = "First";
+		String lastName = "and Last Name";
+		when(repository.findById(-1L)).thenReturn(Optional.of(null));
+
+		employeeController.deleteEmployee(-1L);
 	}
 	
 	//TODO hackathon identify which other unit tests are missing
