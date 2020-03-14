@@ -137,8 +137,9 @@ public class ParkingControllerTest {
 
         assertThat(responseEntity).isNotNull();
         assertThat(responseEntity.size()).isEqualTo(2);
-        assertThat(responseEntity.get(0) instanceof Parking).isTrue();
         assertThat(responseEntity.get(0).getName()).isEqualTo("Alter-Solutions");
+        assertThat(responseEntity.get(0).getParkingLot().size()).isEqualTo(50);
+        assertThat(responseEntity.get(1).getParkingLot().size()).isEqualTo(50);
         assertThat(responseEntity.get(0).getBuilding()).isEqualTo("B1");
         assertThat(responseEntity.get(1).getBuilding()).isEqualTo("B2");
 
