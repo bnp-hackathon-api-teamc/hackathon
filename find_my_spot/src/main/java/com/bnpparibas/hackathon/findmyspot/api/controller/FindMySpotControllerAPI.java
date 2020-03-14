@@ -15,7 +15,7 @@ public interface FindMySpotControllerAPI {
 
 	public String getEmployeeParkingLot(@RequestBody long userId);
 
-	public void markOcucupied(String building, parkingLotID);
+	public void markOcucupied(String building, long parkingLotID);
 
-	public void markUnocucupied(String building, parkingLotID);
+	public void markUnocucupied(String building, long parkingLotID);
 }
