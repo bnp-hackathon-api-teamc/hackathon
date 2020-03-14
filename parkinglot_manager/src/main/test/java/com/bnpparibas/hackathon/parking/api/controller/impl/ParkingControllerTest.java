@@ -3,8 +3,10 @@ package com.bnpparibas.hackathon.parking.api.controller.impl;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
+import com.bnpparibas.hackathon.commons.api.exception.ResourceNotFoundException;
 import com.bnpparibas.hackathon.parking.api.repository.ParkingLotRepository;
 import com.bnpparibas.hackathon.parking.api.repository.ParkingRepository;
+import javassist.NotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -19,10 +22,7 @@ import com.bnpparibas.hackathon.parking.api.model.Parking;
 import com.bnpparibas.hackathon.parking.api.model.ParkingLot;
 
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 
 @ExtendWith(SpringExtension.class)
@@ -88,9 +88,24 @@ public class ParkingControllerTest {
 
     @Test
     public void updateParkingLot() throws Exception {
+
+        ParkingLot parkingLot = parkingB1.getParkingLot().get(0);
+        when(parkingLotRepository.findById(1L)).thenReturn(Optional.of(parkingLot));
+
         ResponseEntity<ParkingLot> responseEntity = parkingController.updateParkingLot(1L, new ParkingLot());
 
         assertThat(responseEntity).isNotNull();
+        assertThat(responseEntity.getBody()).isNotNull();
+        assertThat(responseEntity.getBody().getFloor()).isEqualTo(0);
+        assertThat(responseEntity.getBody().getWidth()).isEqualTo(0);
+        assertThat(responseEntity.getBody().getHeight()).isEqualTo(0);
+        assertThat(responseEntity.getBody().getParking()).isNull();
+    }
+
+    @Test(expected = ResourceNotFoundException.class)
+    public void FailUpdateParkingLot() throws Exception {
+
+        ResponseEntity<ParkingLot> responseEntity = parkingController.updateParkingLot(-1L, new ParkingLot());
     }
 
     @Test

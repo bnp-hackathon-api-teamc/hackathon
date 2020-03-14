@@ -4,6 +4,13 @@ import com.bnpparibas.hackathon.commons.api.exception.ResourceNotFoundException;
 import com.bnpparibas.hackathon.parking.api.controller.ParkingControllerAPI;
 import com.bnpparibas.hackathon.parking.api.model.Parking;
 import com.bnpparibas.hackathon.parking.api.model.ParkingLot;
+import com.bnpparibas.hackathon.parking.api.repository.ParkingRepository;
+import javassist.NotFoundException;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.bnpparibas.hackathon.commons.api.exception.ResourceNotFoundException;
+import com.bnpparibas.hackathon.parking.api.model.Parking;
+import com.bnpparibas.hackathon.parking.api.model.ParkingLot;
 import com.bnpparibas.hackathon.parking.api.service.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +26,21 @@ public class ParkingController implements ParkingControllerAPI{
 
     @Autowired
     private ParkingService parkingService;
+    @Autowired
+    private ParkingLotRepository parkingLotRepository;
 
     @Override
     public ResponseEntity<ParkingLot> updateParkingLot(Long parkingLotId, @Valid ParkingLot parkingLotDetails) throws ResourceNotFoundException {
-        return null;
+        ParkingLot parkingLot = parkingLotRepository.findById(parkingLotId).orElseThrow(() -> new ResourceNotFoundException("Parking lot dos not exist") );
+
+        parkingLot.setFloor(parkingLotDetails.getFloor());
+        parkingLot.setHeight(parkingLotDetails.getHeight());
+        parkingLot.setLotId(parkingLotDetails.getLotId());
+        parkingLot.setWidth(parkingLotDetails.getWidth());
+        parkingLot.setParking(parkingLotDetails.getParking());
+
+        parkingLotRepository.save(parkingLot);
+        return ResponseEntity.ok(parkingLot);
     }
 
     @Override
@@ -32,7 +50,8 @@ public class ParkingController implements ParkingControllerAPI{
 
     @Override
     public ParkingLot createParkingLot(@Valid ParkingLot parkingLot) {
-        return null;
+
+        return parkingLotRepository.save(parkingLot);
     }
 
     @Override

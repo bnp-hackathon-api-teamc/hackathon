@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
 
 import com.bnpparibas.hackathon.commons.api.exception.ResourceNotFoundException;
@@ -12,7 +13,7 @@ import com.bnpparibas.hackathon.parking.api.model.ParkingLot;
 
 public interface ParkingControllerAPI {
 	
-	public ResponseEntity<ParkingLot> updateParkingLot(Long parkingLotId, @Valid ParkingLot parkingLotDetails) throws ResourceNotFoundException;
+	public ResponseEntity<ParkingLot> updateParkingLot(Long parkingLotId, @Valid ParkingLot parkingLotDetails) throws ResourceNotFoundException, NotFoundException;
 	
 	public ResponseEntity<Parking> updateParking(Long parkingId, @Valid Parking parkingDetails) throws ResourceNotFoundException;
 
